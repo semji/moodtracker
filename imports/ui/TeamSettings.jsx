@@ -4,7 +4,7 @@ export default class TeamParameters extends Component {
     render() {
         return (
             <div>
-                <h2>Configure your team settings</h2>
+                <h2>Configure your team settings ({this.props.team.name})</h2>
                 <form>
                     <div class="form-row">
                         <label for="teamName">Team name</label>
@@ -23,4 +23,6 @@ export default class TeamParameters extends Component {
     }
 }
 
-TeamParameters.propTypes = {};
+TeamParameters.propTypes = {
+    team: PropTypes.object.isRequired
+};

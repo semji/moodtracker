@@ -13,7 +13,7 @@ class App extends Component {
                 <header>
                     <h1>MoodTracker</h1>
 
-                    <TeamSettings />
+                    <TeamSettings team={this.props.team} />
                 </header>
             </div>
         );
@@ -25,7 +25,13 @@ App.propTypes = {
 };
 
 export default createContainer(() => {
+    if (!Teams.findOne({})) {
+        Teams.insert({
+            name: 'My Team'
+        });
+    }
+
     return {
-        team: Teams.findOne({}).fetch()
+        team: Teams.findOne({})
     };
 }, App);
