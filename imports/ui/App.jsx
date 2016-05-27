@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import TeamSettings from './TeamSettings';
+import { createContainer } from 'meteor/react-meteor-data';
+
+import { Teams } from '../api/teams.js';
 
 // App component - represents the whole app
-export default class App extends Component {
+class App extends Component {
 
     render() {
         return (
@@ -16,3 +19,13 @@ export default class App extends Component {
         );
     }
 }
+
+App.propTypes = {
+    team: PropTypes.object.isRequired
+};
+
+export default createContainer(() => {
+    return {
+        team: Teams.findOne({}).fetch()
+    };
+}, App);
